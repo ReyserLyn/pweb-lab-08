@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casino FastMoney</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+        <h1>Bienvenido, {{ user.nombres }}</h1>
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Cerrar sesión</button>
+        </form>
+    {% else %}
+        <h1>Bienvenido, por favor inicia sesión o regístrate</h1>
+        <a href="{% url 'login' %}">Iniciar sesión</a>
+        <a href="{% url 'register' %}">Registrarse</a>
+    {% endif %}
+</body>
+</html>
